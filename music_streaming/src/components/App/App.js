@@ -1,10 +1,10 @@
 import { Component } from 'react'
 import './App.css'
 import React from 'react'
-import Playlist from ""
-import SearchBar from ""
-import SearchResults from ""
-import Spotify from ""
+import Playlist from "../Playlist/Playlist"
+import SearchBar from "../SearchBar/SearchBar"
+import SearchResults from "../SearchResults/SearchResults"
+import Spotify from "../Util/Spotify"
 
 class App extends Component {
   constructor(props){
@@ -26,14 +26,14 @@ class App extends Component {
   }
   
   search(term){
-    spotify.search(term).then(searchResults =>{
+    Spotify.search(term).then(searchResults =>{
         this.setState({searchResults: searchResults});
     });
   }
 
   addTrack(track){
     let tracks=this.state.playlistTracks;
-    if(tracks.find(savedTrack => savedTrack.id == track.id)){
+    if(tracks.find(savedTrack => savedTrack.id === track.id)){
       return;
     }
     tracks.push(track);
@@ -77,7 +77,7 @@ class App extends Component {
     return (
       <div>
         <h1>
-          <a href="http://localhost:3000">MusicalApp</a>
+          <a href="http://localhost:3000">MusicalArena</a>
         </h1>
         <div className="App">
           <SearchBar onSearch={this.search} />
